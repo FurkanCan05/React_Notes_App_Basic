@@ -1,0 +1,194 @@
+@import './colors.scss';
+
+.app{
+    width: 100%;
+    min-height: 100svh;
+    background-color: $background-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .container{
+        width: 40%;
+        min-width: 40rem;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .title{
+        font-size: 48px;
+        color: $title-color;
+    }
+
+    .new-note{ //New note block
+        display: flex;
+        align-items: center;
+        background-color: $list-background-color;
+        border-radius: .5rem;
+        margin: 1rem 0 ;
+
+        button{
+            font-size: 24px;
+            color: $check-mark-color;
+            background-color: transparent;
+            border: 1px solid $border-color;
+            border-radius: 50%;
+            margin: 0 .2rem 0 1rem;
+            padding: .3rem;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+
+        input{
+            font-size: 38px;
+            padding: 1rem;
+            border: none;
+            color: $text-color;
+            background-color: transparent;
+            width: 100%;
+            border-radius: .5rem 0 0 .5rem;
+            margin: .5rem 1rem .5rem 0;
+
+            &::placeholder{
+                color: $placeholder-color;
+            }
+
+            &:focus{
+               outline: none;
+            }
+        }
+    }
+
+    ul{ //Container that contains notes
+        height: 24.4rem;
+        overflow-y: scroll;
+        overflow-x: visible;
+        border-radius: .5rem .5rem 0 0;
+
+        &::-webkit-scrollbar{
+           display: none;
+        }
+
+        .no-note-message{
+            font-size: 42px;
+            text-align: center;
+            color: $text-color;
+        }
+
+        li{ //Each one of notes
+            padding: 2rem 0;
+            color: $text-color;
+            background-color: $list-background-color;
+            border-bottom: 1px solid $check-mark-color;
+            display: flex;
+            align-items: center;
+            transition: 300ms ease;
+
+            &:hover{
+                background-color: $list-hover-color;
+
+                p{
+                    word-break: break-word;
+                }
+
+                ion-icon{
+                    visibility: visible;
+                    cursor: pointer;
+                }
+            }
+
+            input[type="checkbox"]{ //Customize checkbox
+                border-radius: 50%;
+                background-color: transparent;
+                appearance: none;
+                min-width: 2rem;
+                min-height: 2rem;
+                border: 1px solid $border-color;
+                margin: 0 1rem;
+                display: grid;
+                place-items: center;
+                cursor: pointer;
+
+                &::before{
+                    content: "";
+                    width: .7rem;
+                    height: .7rem;
+                    border-radius: 50%;
+                    background-color: $check-mark-color;
+                    transform: scale(0);
+                    transition: 120ms transform ease-in-out;
+                    
+                }
+
+                &:checked::before{
+                    transform: scale(1);
+                }
+            }
+
+            p{ //Content
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 32px;
+                margin-right: .5rem;
+            }
+
+            ion-icon{ //Delete icon
+                min-width: 2rem;
+                min-height: 2rem;
+                margin: 0 .5rem;
+                margin-left: auto;
+                visibility: hidden;
+            } 
+        }
+
+        .done-todo{
+            background-color: $list-done-color;
+
+            &:hover{
+                background-color: $list-done-hover-color;
+            }
+        }
+
+        .done-p{
+            text-decoration: line-through;
+        }
+    }
+
+    footer{//Bottom side
+        width: 100%;
+        border-radius: 0 0 .5rem .5rem;
+        padding: 1rem;
+        background-color: $list-background-color;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p{
+            color: $text-color;
+            font-size: 20px;
+        }
+
+        button{
+            background-color: transparent;
+            border: none;
+            color: $text-color;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 300ms;
+
+            &:active{
+                color: $button-active-color;
+            }
+        }
+
+        button:not(:last-child){
+            margin: 0 .5rem;
+        }
+
+        .active{
+            color: $button-active-color;
+        }
+    }
+}
